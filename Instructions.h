@@ -11,6 +11,8 @@
 #include "sgpl/spec/Spec.hpp"
 //#include <_types/_uint32_t.h>
 
+constexpr bool xor_bool = true; // Set to true or false as needed
+
 /**
  * A custom instruction that outputs the value of a register as the (possible)
  * solution to a task, and then gets a new input value and stores it in the same
@@ -49,6 +51,110 @@ struct NandInstruction {
   static size_t prevalence() { return 1; }
 };
 
+struct NotInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t not_val = ~reg_b;
+
+                    core.registers[inst.args[0]] = not_val;
+                  }
+  static std::string name() { return "Not"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct AndInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t and_val = reg_b & reg_c;
+
+                    core.registers[inst.args[0]] = and_val;
+                  }
+  static std::string name() { return "And"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct OrnInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t orn_val = reg_b | ~reg_c;
+
+                    core.registers[inst.args[0]] = orn_val;
+                  }
+  static std::string name() { return "Orn"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct OrInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t or_val = reg_b | reg_c;
+
+                    core.registers[inst.args[0]] = or_val;
+                  }
+  static std::string name() { return "Or"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct AndnInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t andn_val = reg_b & ~reg_c;
+
+                    core.registers[inst.args[0]] = andn_val;
+                  }
+  static std::string name() { return "Andn"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct NorInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t nor_val = ~(reg_b | ~reg_c);
+
+                    core.registers[inst.args[0]] = nor_val;
+                  }
+  static std::string name() { return "Nor"; }
+  static size_t prevalence() { return 1; }
+};
+
+struct XorInstruction {
+  template <typename Spec>
+  static void run(sgpl::Core<Spec> &core, const sgpl::Instruction<Spec> &inst,
+                  const sgpl::Program<Spec> &,
+                  typename Spec::peripheral_t &state) noexcept {
+                    uint32_t reg_b = core.registers[inst.args[1]];
+                    uint32_t reg_c = core.registers[inst.args[2]];
+                    uint32_t xor_val = reg_b ^ reg_c;
+
+                    core.registers[inst.args[0]] = xor_val;
+                  }
+  static std::string name() { return "Xor"; }
+  static size_t prevalence() { return 1; }
+};
+
 /**
  * A custom instruction that attempts to reproduce and produce a child organism,
  * if this organism has enough points.
@@ -70,12 +176,18 @@ struct ReproduceInstruction {
 };
 
 
-
-using Library =
+using Library = std::conditional_t<
+    xor_bool,
     sgpl::OpLibraryCoupler<sgpl::NopOpLibrary, sgpl::BitwiseShift, sgpl::Increment, sgpl::Decrement,
-    sgpl::Add, sgpl::Subtract, sgpl::global::JumpIfNot, sgpl::local::JumpIfNot, sgpl::global::Anchor, IOInstruction, NandInstruction,
-                           ReproduceInstruction>;
+                           sgpl::Add, sgpl::Subtract, sgpl::global::JumpIfNot, sgpl::local::JumpIfNot, sgpl::global::Anchor, IOInstruction, NandInstruction,
+                           //NotInstruction, AndInstruction, OrnInstruction, OrInstruction, AndnInstruction, NorInstruction,
+                           XorInstruction, ReproduceInstruction>,
+    sgpl::OpLibraryCoupler<sgpl::NopOpLibrary, sgpl::BitwiseShift, sgpl::Increment, sgpl::Decrement,
+                           sgpl::Add, sgpl::Subtract, sgpl::global::JumpIfNot, sgpl::local::JumpIfNot, sgpl::global::Anchor, IOInstruction, NandInstruction,
+                           //NotInstruction, AndInstruction, OrnInstruction, OrInstruction, AndnInstruction, NorInstruction,
+                           ReproduceInstruction>
+>;
 
 using Spec = sgpl::Spec<Library, OrgState>;
 
-#endif
+#endif  

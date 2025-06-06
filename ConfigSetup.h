@@ -1,3 +1,6 @@
+#ifndef CONFIG_SETUP_H
+#define CONFIG_SETUP_H
+
 #include "emp/config/ArgManager.hpp"
 
 EMP_BUILD_CONFIG(MyConfigType,
@@ -6,3 +9,5 @@ EMP_BUILD_CONFIG(MyConfigType,
   VALUE(FILE_NAME, std::string, "DataFile.dat", "Root output file name"),
   VALUE(REWARD, bool, true, "Should all tasks receive rewards?")
 )
+
+#endif // CONFIG_SETUP_H

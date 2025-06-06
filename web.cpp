@@ -53,7 +53,18 @@ class AEAnimator : public emp::web::Animate {
         doc << canvas;
         buttons << GetToggleButton("Toggle");
         buttons << GetStepButton("Step");
-        text << "";
+        text << "This is a visual representation of a world containing 3600 organisms in a 60 x 60\
+        grid, in which the organisms can evolve to perform logic tasks of increasing complexity. A black\
+        square represents an organism that has not completed any task. If an organism has complete a task,\
+        the color of its most difficult task will be shown. The colors, in ascending order of difficulty, are:\
+        NOT - brown, NAND - red, AND - orange, ORN - yellow, OR - green, ANDN - teal, NOR - blue, XOR - purple,\
+        EQU - cyan. There are two experiments that can be performed. One uses the 'Reward' slider, which\
+        allows you to switch rewards from 'on' (where more complex tasks are rewarded with more points), and 'off'\
+        (where all tasks are rewarded equally). The other experiment cannot be carried out using config sliders,\
+        since the changes necessary must be evaluated at compile time rather than at runtime. In the 'Instructions.h'\
+        file, the xor_bool can be manipulated to allow organisms to either only have the NAND instruction built into\
+        their genomes or to have both NAND and XOR built in. Change the seed slider to run multiple trials for the\
+        same treatment.";
 
         world.Resize(num_h_boxes,num_w_boxes);
         world.SetPopStruct_Grid(num_w_boxes, num_h_boxes);

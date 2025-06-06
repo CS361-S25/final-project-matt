@@ -362,7 +362,6 @@ public:
             if (task == tasks[0]) { state.points += task_points; }
             else { state.points += 1.0; }
         }
-
         if (task_points == 320.0) { state.doneEQU = true; }
         else if (task_points == 161.0) { state.doneXOR = true; }
         else if (task_points == 160.0) { state.doneNOR = true; }

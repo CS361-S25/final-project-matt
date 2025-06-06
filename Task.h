@@ -29,9 +29,9 @@ class NOT : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -68,9 +68,9 @@ class NAND : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -110,9 +110,9 @@ class AND : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -152,9 +152,9 @@ class ORN : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -194,9 +194,9 @@ class OR : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -236,9 +236,9 @@ class ANDN : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -278,9 +278,9 @@ class NOR : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -320,9 +320,9 @@ class XOR : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
@@ -362,9 +362,9 @@ class EQU : public Task {
          * @brief Evaluates the given output against the expected result based on the task's criterion.
          *
          * This function processes an organism's output by comparing it against values derived from the input array.
-         * For instance, in a SquareTask, it computes a square value from the inputs and if the absolute difference 
-         * between the output and the computed value is less than 0.001, it returns a high score (50.0). Otherwise,
-         * it returns a default value (1.0).
+         * A set larger value of points is rewarded if an organism succeeds in carrying out the logic task. This value is 
+         * proportional to the difficulty of carrying out that task. If the organism fails the task, it gets 1 point to
+         * allow it to still work towards reproducing.
          *
          * @param output The output value produced by an organism.
          * @param inputs An array of input values used for evaluation.
